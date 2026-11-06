@@ -1,11 +1,10 @@
-// 1. Tạo Firebase project tại https://console.firebase.google.com/
-// 2. Thêm ứng dụng Web và sao chép cấu hình SDK vào đây.
-// 3. Đổi tên file này thành firebase-config.js.
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAREoreu3QBkGP1Hj10evNUIw-SCwAFR8A",
+  authDomain: "bch-truc-cong.firebaseapp.com",
+  projectId: "bch-truc-cong",
+  storageBucket: "bch-truc-cong.firebasestorage.app",
+  messagingSenderId: "925830104216",
+  appId: "1:925830104216:web:655ba31c4ce9243e6bbced",
+  measurementId: "G-PPHS1KE8Q0"
 };
