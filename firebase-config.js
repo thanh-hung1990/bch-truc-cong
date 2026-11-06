@@ -6,5 +6,5 @@ export const firebaseConfig = {
   storageBucket: "bch-truc-cong.firebasestorage.app",
   messagingSenderId: "925830104216",
   appId: "1:925830104216:web:655ba31c4ce9243e6bbced",
-  measurementId: "G-PPHS1KE8Q0"
+ measurementId: "G-PPHS1KE80Q"
 };
