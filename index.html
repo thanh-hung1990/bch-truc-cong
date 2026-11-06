@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#123b65">
+  <title>BCH TRỰC CỔNG | Đoàn trường</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="loginView" class="login-wrap">
+    <section class="login-card">
+      <div class="brand-mark">✓</div>
+      <p class="eyebrow">ĐOÀN TRƯỜNG THPT TRẦN ĐẠI NGHĨA</p>
+      <h1>BCH TRỰC CỔNG</h1>
+      <p class="muted">Hệ thống ghi nhận và thống kê vi phạm nề nếp học sinh</p>
+      <form id="loginForm" class="stack">
+        <label>Email<input id="loginEmail" type="email" placeholder="Email được cấp" required autocomplete="username"></label>
+        <label>Mật khẩu<input id="loginPassword" type="password" placeholder="Mật khẩu" required autocomplete="current-password"></label>
+        <button class="btn primary full" type="submit">Đăng nhập</button>
+        <p id="loginMessage" class="form-message" aria-live="polite"></p>
+      </form>
+      <p class="tiny muted">Tài khoản do quản trị viên cấp. Không tự đăng ký công khai.</p>
+    </section>
+  </div>
+
+  <div id="appView" class="app hidden">
+    <aside class="sidebar">
+      <div class="side-brand"><div class="brand-mark small">✓</div><div><b>BCH TRỰC CỔNG</b><small>ĐOÀN TRƯỜNG</small></div></div>
+      <nav>
+        <button class="nav-link active" data-page="dashboard">▦ <span>Tổng quan</span></button>
+        <button class="nav-link" data-page="record">＋ <span>Ghi nhận vi phạm</span></button>
+        <button class="nav-link" data-page="records">☷ <span>Sổ vi phạm</span></button>
+        <button class="nav-link" data-page="students">♙ <span>Danh sách học sinh</span></button>
+      </nav>
+      <div class="side-bottom">
+        <div class="user-mini"><div class="avatar">B</div><div><b id="userEmail">Người dùng</b><small id="userRole">Thành viên</small></div></div>
+        <button id="logoutBtn" class="btn ghost full">Đăng xuất</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">HỆ THỐNG QUẢN LÝ NỀ NẾP</p><h2 id="pageTitle">Tổng quan</h2></div>
+        <div class="top-actions"><span class="online-dot"></span><span class="muted small-text">Đồng bộ Firebase</span><button class="mobile-menu" id="mobileMenu">☰</button></div>
+      </header>
+
+      <section id="page-dashboard" class="page">
+        <div class="welcome"><div><h3>Xin chào, BCH Đoàn trường!</h3><p>Theo dõi tình hình vi phạm và hoạt động trực cổng.</p></div><div class="welcome-icon">🛡️</div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-label">Tổng lượt vi phạm</span><strong id="statTotal">0</strong><small>Trong phạm vi bộ lọc</small></article>
+          <article class="stat-card"><span class="stat-label">Đi học muộn</span><strong id="statLate">0</strong><small>Lượt ghi nhận</small></article>
+          <article class="stat-card"><span class="stat-label">Vi phạm đồng phục</span><strong id="statUniform">0</strong><small>Lượt ghi nhận</small></article>
+          <article class="stat-card"><span class="stat-label">Không đội mũ bảo hiểm</span><strong id="statHelmet">0</strong><small>Lượt ghi nhận</small></article>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Thống kê theo lỗi</h3><p class="muted">Số lượt vi phạm trong dữ liệu đã tải</p></div><button class="btn secondary" data-go="records">Xem sổ vi phạm</button></div>
+          <div id="typeBars" class="bars"><p class="muted">Chưa có dữ liệu.</p></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>Vi phạm gần đây</h3><p class="muted">Các lượt ghi nhận mới nhất</p></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Ngày</th><th>Học sinh</th><th>Lớp</th><th>Lỗi</th><th>Người ghi nhận</th></tr></thead><tbody id="recentRows"><tr><td colspan="5" class="empty">Chưa có dữ liệu</td></tr></tbody></table></div>
+        </div>
+      </section>
+
+      <section id="page-record" class="page hidden">
+        <div class="panel form-panel">
+          <div class="panel-head"><div><h3>Phiếu ghi nhận vi phạm</h3><p class="muted">Có thể ghi nhận một hoặc nhiều học sinh cho cùng một lỗi.</p></div><span class="tag">Biểu mẫu trực cổng</span></div>
+          <form id="recordForm" class="form-grid">
+            <label class="span-2">Tên BCH / người trực cổng<input id="recTeam" required placeholder="Ví dụ: BCH Trực cổng – Đội trực tuần"></label>
+            <label>Tuần<input id="recWeek" required placeholder="Ví dụ: Tuần 10"></label>
+            <label>Ngày ghi nhận<input id="recDate" type="date" required></label>
+            <label class="span-2">Chọn lỗi vi phạm<select id="recType" required><option value="">-- Chọn lỗi --</option><option value="late">Đi học muộn</option><option value="uniform">Vi phạm đồng phục</option><option value="helmet">Không đội mũ bảo hiểm</option></select></label>
+            <div class="span-2">
+              <div class="label-row"><label for="classFilter">Chọn lớp</label><span id="studentCount" class="muted tiny">0 học sinh được chọn</span></div>
+              <select id="classFilter"><option value="">Tất cả lớp</option></select>
+              <input id="studentSearch" class="search-input" placeholder="Tìm theo tên hoặc mã học sinh..." autocomplete="off">
+              <div id="studentPicker" class="student-picker"><p class="empty">Chưa có danh sách học sinh. Hãy thêm hoặc nhập danh sách ở mục “Danh sách học sinh”.</p></div>
+            </div>
+            <label class="span-2">Ghi chú (không bắt buộc)<textarea id="recNote" rows="2" placeholder="Thông tin bổ sung..."></textarea></label>
+            <div class="span-2 form-footer"><p id="recordMessage" class="form-message"></p><button class="btn primary" type="submit">↗ Gửi kết quả ghi nhận</button></div>
+          </form>
+        </div>
+      </section>
+
+      <section id="page-records" class="page hidden">
+        <div class="panel">
+          <div class="panel-head"><div><h3>Sổ ghi nhận vi phạm</h3><p class="muted">Tra cứu, lọc và xuất dữ liệu.</p></div><button id="exportBtn" class="btn primary">↓ Xuất CSV</button></div>
+          <div class="filters">
+            <label>Từ ngày<input id="filterFrom" type="date"></label><label>Đến ngày<input id="filterTo" type="date"></label>
+            <label>Lỗi<select id="filterType"><option value="">Tất cả lỗi</option><option value="late">Đi học muộn</option><option value="uniform">Vi phạm đồng phục</option><option value="helmet">Không đội mũ bảo hiểm</option></select></label>
+            <label>Lớp<select id="filterClass"><option value="">Tất cả lớp</option></select></label>
+            <button id="clearFilters" class="btn secondary">Xóa lọc</button>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>Ngày</th><th>Tuần</th><th>Học sinh</th><th>Lớp</th><th>Lỗi</th><th>BCH / người trực</th><th>Ghi chú</th></tr></thead><tbody id="recordRows"><tr><td colspan="7" class="empty">Chưa có dữ liệu</td></tr></tbody></table></div>
+        </div>
+      </section>
+
+      <section id="page-students" class="page hidden">
+        <div class="panel">
+          <div class="panel-head"><div><h3>Danh sách học sinh</h3><p class="muted">Thêm từng học sinh hoặc nhập danh sách CSV.</p></div></div>
+          <div class="student-tools">
+            <form id="studentForm" class="inline-form"><input id="studentName" placeholder="Họ và tên học sinh" required><input id="studentClass" placeholder="Lớp (VD: 10A1)" required><input id="studentCode" placeholder="Mã học sinh (nếu có)"><button class="btn primary" type="submit">＋ Thêm học sinh</button></form>
+            <div class="import-row"><label class="btn secondary file-btn">↑ Nhập danh sách CSV<input id="csvInput" type="file" accept=".csv,text/csv"></label><span class="muted tiny">Cột CSV: HoTen,Lop,MaHocSinh (mã học sinh không bắt buộc).</span><button id="downloadTemplate" class="text-btn">Tải file mẫu</button></div>
+          </div>
+          <div class="list-toolbar"><input id="studentListSearch" placeholder="Tìm học sinh..."><span id="studentTotal" class="muted small-text">0 học sinh</span></div>
+          <div class="table-wrap"><table><thead><tr><th>STT</th><th>Mã học sinh</th><th>Họ và tên</th><th>Lớp</th></tr></thead><tbody id="studentsRows"><tr><td colspan="4" class="empty">Chưa có danh sách học sinh</td></tr></tbody></table></div>
+        </div>
+      </section>
+      <footer>© BCH Đoàn trường THPT Trần Đại Nghĩa · Hệ thống nội bộ</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
